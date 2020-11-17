@@ -3,6 +3,7 @@ package com.xiaobao.food.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -13,23 +14,24 @@ import lombok.Data;
  */
 @Data
 @ApiModel
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Order implements Serializable {
     /**
      * 自增ID
      */
-    @ApiModelProperty(value = "订单的id",required = false)
+    @ApiModelProperty(value = "订单的id",dataType = "long")
     private Long id;
 
     /**
      * 餐厅菜品id
      */
-    @ApiModelProperty(value = "食物的id",required = true)
+    @ApiModelProperty(value = "食物的id",dataType = "long",required = true)
     private Long restaurantFoodId;
 
     /**
      * 用户id
      */
-    @ApiModelProperty(value = "用户的id",required = true)
+    @ApiModelProperty(value = "用户的id",dataType = "long",required = true)
     private Long userAccountId;
 
     /**

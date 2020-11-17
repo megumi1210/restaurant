@@ -1,6 +1,7 @@
 package com.xiaobao.food;
 
 
+import com.xiaobao.food.entity.Order;
 import com.xiaobao.food.service.RestaurantService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,8 +17,22 @@ public class RestaurantServiceTest {
     RestaurantService restaurantService;
 
     @Test
-    public void test1(){
-    System.out.println( (int )(Math.random() + 0.5));
+    public void findAll(){
+    System.out.println( restaurantService.findAll());
+    }
+
+
+    @Test
+    public void findFoodById(){
+        System.out.println( restaurantService.findFoodById(2));
+    }
+
+    @Test
+    public void placeOrder() throws Exception {
+        Order order = new Order();
+        order.setUserAccountId(1L);
+        order.setRestaurantFoodId(2L);
+        System.out.println( restaurantService.placeOrder(order));
     }
 
 }

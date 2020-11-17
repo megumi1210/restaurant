@@ -1,6 +1,7 @@
 package com.xiaobao.food.dao;
 
 import com.xiaobao.food.entity.Restaurant;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -18,4 +19,10 @@ public interface RestaurantMapper {
     int updateByPrimaryKey(Restaurant record);
 
     List<Restaurant> findAll();
+
+
+    List<Restaurant> findDefaultRest(@Param("ids") List<Long> ids);
+
+
+    List<Restaurant> findOtherRest(@Param("ids") List<Long> ids);
 }

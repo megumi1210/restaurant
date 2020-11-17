@@ -2,6 +2,8 @@ package com.xiaobao.food.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 /**
@@ -9,6 +11,7 @@ import lombok.Data;
  * @author
  */
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class UserAccount implements Serializable {
     /**
      * 自增ID

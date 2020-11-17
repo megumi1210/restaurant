@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -14,6 +15,7 @@ import lombok.Data;
  */
 @Data
 @ApiModel
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class RestaurantFood implements Serializable {
     /**
      * 自增ID

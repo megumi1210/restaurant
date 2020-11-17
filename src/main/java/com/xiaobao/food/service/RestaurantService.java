@@ -3,6 +3,7 @@ package com.xiaobao.food.service;
 import com.xiaobao.food.dao.OrderMapper;
 import com.xiaobao.food.dao.RestaurantFoodMapper;
 import com.xiaobao.food.dao.RestaurantMapper;
+import com.xiaobao.food.entity.DefaultResIds;
 import com.xiaobao.food.entity.Order;
 import com.xiaobao.food.entity.Restaurant;
 import com.xiaobao.food.entity.RestaurantFood;
@@ -22,8 +23,16 @@ public class RestaurantService {
   @Resource
   OrderMapper orderMapper;
 
+  @Resource
+  DefaultResIds defaultResIds;
+
   public List<Restaurant> findAll() {
-    return restaurantMapper.findAll();
+
+    List<Restaurant> defaultRest = restaurantMapper.findDefaultRest(defaultResIds.getIds());
+    List<Restaurant> otherRest = restaurantMapper.findOtherRest(defaultResIds.getIds());
+
+    defaultRest.addAll(otherRest);
+    return defaultRest;
   }
 
   public List<RestaurantFood> findFoodById(Integer id) {
