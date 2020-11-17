@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaobao.food.dao.RestaurantFoodMapper">
+  <resultMap id="BaseResultMap" type="com.xiaobao.food.entity.RestaurantFood">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="restaurant_id" jdbcType="BIGINT" property="restaurantId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="count" jdbcType="INTEGER" property="count" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+
+  <select id="findFoodByRestaurantId" resultMap="BaseResultMap">
+     select * from restaurant_food where restaurant_id=#{rid}
+  </select>
+
+
+  <sql id="Base_Column_List">
+    id, restaurant_id, `name`, description, `count`, `status`, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from restaurant_food
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from restaurant_food
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.xiaobao.food.entity.RestaurantFood" useGeneratedKeys="true">
+    insert into restaurant_food (restaurant_id, `name`, description,
+      `count`, `status`, create_time,
+      update_time)
+    values (#{restaurantId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},
+      #{count,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP},
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.xiaobao.food.entity.RestaurantFood" useGeneratedKeys="true">
+    insert into restaurant_food
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="restaurantId != null">
+        restaurant_id,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="count != null">
+        `count`,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="restaurantId != null">
+        #{restaurantId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null">
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaobao.food.entity.RestaurantFood">
+    update restaurant_food
+    <set>
+      <if test="restaurantId != null">
+        restaurant_id = #{restaurantId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null">
+        `count` = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaobao.food.entity.RestaurantFood">
+    update restaurant_food
+    set restaurant_id = #{restaurantId,jdbcType=BIGINT},
+      `name` = #{name,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      `count` = #{count,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
