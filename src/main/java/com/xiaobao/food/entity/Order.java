@@ -25,7 +25,7 @@ public class Order implements Serializable {
     /**
      * 餐厅菜品id
      */
-    @ApiModelProperty(value = "食物的id",dataType = "long",required = true)
+   @ApiModelProperty(value = "食物的id",dataType = "long",required = true)
     private Long restaurantFoodId;
 
     /**

@@ -33,19 +33,14 @@ public class RestaurantController {
   @ApiOperation(value = "查询餐厅列表",notes = "不分页")
   public List<Restaurant> findAll() {
 
-    System.out.println(defaultResIds.getIds());
-    List<Restaurant> result = new ArrayList<>();
-    Restaurant res = new Restaurant();
-    res.setId(1L);
-    res.setName("hello");
-    result.add(res);
-    //return restaurantService.findAll();
-    return result;
+
+    return restaurantService.findAll();
+
   }
 
   @GetMapping
   @ApiOperation(value = "根据餐厅id查询餐厅的食物列表",notes = "不分页")
-  public List<RestaurantFood> findFoodById(@ApiParam(value = "餐厅id", required = true) @RequestParam(value = "id") Integer id){
+  public List<RestaurantFood> findFoodById( @RequestParam(value = "id") Integer id){
     return restaurantService.findFoodById(id);
   }
 

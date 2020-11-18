@@ -44,7 +44,7 @@ public class RestaurantFood implements Serializable {
     /**
      * 剩余份数
      */
-    @ApiModelProperty(value = "剩余份数",required = false)
+   @ApiModelProperty(value = "剩余份数",required = false)
     private Integer count;
 
     /**
